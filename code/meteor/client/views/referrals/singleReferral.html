@@ -1,0 +1,31 @@
+<template name="singleReferral">
+	<span class="col-md-8">
+		<div class="card">
+			<div class="content">
+				{{#with referral}}
+					<div class="row">
+						<div class="col-md-2">
+							<a href="/user/{{referral.from}}">
+								<img rel="tooltip" title="{{userName referral.from}}" src="{{userImageUrl referral.from}}{{avatarImageOpts}}" style="height: 30px; width: 30px; margin-top: 10px;" class="avatar">
+							</a>
+						</div>
+						<div class="col-md-8">
+							<p>{{{referral.content}}}</p>
+						</div>
+						<div class="col-md-2">
+							<center><p>{{timeSinceReactive referral.createdAt}}</p></center>
+						</div>
+						<!-- <td class="text-right">
+							<a rel="tooltip" title="Send to Group" href="#" id="{{referral._id}}" class="btn btn-default big borderless send-workspace-btn">
+								<i class="{{dict 'icons.workspaces'}}"></i>
+							</a>
+							<a rel="tooltip" title="Dismiss" href="#" id="{{referral._id}}" class="btn btn-default big borderless remove-referral-btn">
+								<i class="ion-ios-checkmark-outline"></i>
+							</a>
+						</td> -->
+					</div>
+				{{/with}}
+			</div>
+		</div>
+	</span>
+</template>

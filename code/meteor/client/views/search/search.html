@@ -1,0 +1,81 @@
+<template name="search">
+	<div class="col-md-10">
+		<div>
+			<h1>Search</h1>
+		</div>
+		<div class="card padded-card">
+			<div class="input-append">
+				<label for="search"><i class="ion-ios-search-strong"></i></label>
+				<input name="search" id="search-input" class="span input-border search-padding" placeholder="Search for people and news." autocomplete="off" spellcheck="true" autocorrect="on" autofocus>
+			</div>
+			<a id="search-clear" href="#" class="fa fa-times-circle hide"></a>
+		</div>
+	</div>
+
+	{{#if peopleData}}		
+	{{#each peopleData}}
+	<div class="row">
+		<div id="{{_id}}" class="user-link col-md-4">
+			<div class="card">
+				<div class="content">
+					<center>
+						<span>
+							<a href="#">
+								<img src="{{profile.profileImage}}{{avatarImageOpts}}" class="avatar profile-card-image">
+							</a>
+						</span>
+						<div class="clearfix"></div>
+						<span class="user-info">
+							<strong>{{profile.fullName}}</strong>
+							<br>
+							{{#if profile.company}}
+								{{profile.company}}
+							{{/if}}
+						</span>
+					</center>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+	{{/if}}
+
+	{{#if peopleData}}
+	{{#if newsData}}
+	{{/if}}
+	{{/if}}
+
+	{{#if newsData}}
+	{{#each newsData}}
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="content">
+					<div>
+						<span class="pull-left">
+							<a href="/user/{{author}}"><img src="{{userImageUrl author}}{{avatarImageOpts}}" class="avatar profile-card-image"></a>
+						</span>
+						<span class="pull-left">
+							<a href="/user/{{author}}"><strong>{{userName author}}</strong></a><br>
+							{{userCompany author}}
+						</span>
+					</div>
+					<div class="clearfix"></div>
+					<div>
+						{{#if imageUrl}}
+							<img src="{{imageUrl}}?fit=max&h=505" class="card image" style="max-height: 505px; max-width: 100%; height: auto; width: auto;">
+						{{/if}}
+					</div>
+					<div>
+						{{{content}}}
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+	{{/if}}	
+
+</template>

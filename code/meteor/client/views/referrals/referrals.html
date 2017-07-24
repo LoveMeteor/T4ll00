@@ -1,0 +1,60 @@
+<template name="referrals"> 
+	<div class="col-md-10">	
+		<div>
+			<span class="h1">
+				Referrals
+			</span>
+			<span class="pull-right">
+				<a href="#" id="new-referral-btn" data-mfb-label="New Lead" class="btn btn-sm btn-fill-white pull-right">
+					New Referral
+				</a>
+			</span>
+		</div>
+		<div style="margin-top: 20px;"></div>
+		<div class="clearfix"></div>
+		<div class="card">
+			<div class="content">
+				<div class="table-responsive table-full-width">
+					<table id="bootstrap-table" class="table table-hover table-striped">
+						<thead>
+							<th width="20%">From</th>
+							<th width="60%">Description</th>
+							<th width="5%" data-field="time">Date</th>
+							<th width="15%" data-field="action"></th>
+						</thead>
+						<tbody>
+						{{#each referral in referrals}}
+							<tr>
+								<td>
+									<a href="/user/{{referral.from}}">
+										<img rel="tooltip" title="{{userName referral.from}}" src="{{userImageUrl referral.from}}{{avatarImageOpts}}" style="height: 30px; width: 30px; margin-top: 10px;" class="avatar">
+									</a>
+								</td>
+								<td>
+									{{{referral.content}}}
+								</td>
+								<td>
+									<center>{{timeSinceReactive referral.createdAt}}</center>
+								</td>
+								<td class="text-right">
+									<a rel="tooltip" title="Send to Group" href="#" id="{{referral._id}}" class="btn btn-default big borderless send-workspace-btn">
+										<i class="{{dict 'icons.workspaces'}}"></i>
+									</a>
+									<a rel="tooltip" title="Dismiss" href="#" id="{{referral._id}}" class="btn btn-default big borderless remove-referral-btn">
+										<i class="ion-ios-checkmark-outline"></i>
+									</a>
+								</td>
+							</tr>
+						{{/each}}
+						{{#if moreResults}}
+						<div id="showMoreResults" style="margin-left: 25px; margin-bottom: 25px;">
+							<span class="loading">Loading...</span>
+						</div>
+						{{/if}}
+						</tbody>
+					</table>
+				</div>						
+			</div>				
+		</div>
+	</div>
+</template>

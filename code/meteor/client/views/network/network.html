@@ -1,0 +1,53 @@
+<template name="network">
+	<div id="members" class="col-md-10">
+		<div>
+			<span class="pull-left">
+				<h1>{{network.name}}</h1>
+			</span>
+			<span class="pull-right">
+				<button class="edit-network-btn btn btn-sm btn-fill-white" aria-hidden="true" type="button" aria-expanded="false">Manage Network</button>
+			</span>
+		</div>
+		<div class="clearfix"></div>
+		<div class="card">
+			<div class="content">
+			{{#if network}}
+				<div style="margin: 0 13px;">
+				
+					<div class="clearfix"></div>
+				</div>
+				{{#each members users}}	
+				<div class="row" style="padding: 0px 0 10px 0;">
+					<span>
+						<span class="pull-left"><a href="/user/{{_id}}"><img src="{{profile.profileImage}}{{avatarImageOpts}}" class="avatar"></a></span>
+						<span>
+							<a href="/user/{{_id}}"><strong>{{profile.fullName}}</strong></a><br>
+							{{profile.company}}<br>
+						</span>
+						<div class="clearfix"></div>
+						<div class="action-panel">
+						{{#if profile.phoneNumber}}
+							<a href="tel:{{profile.phoneNumber}}" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.phone'}}"></i>
+							</a>
+						{{/if}}
+						{{#if emails.[0].address}}
+							<a href="mailto:{{emails.[0].address}}" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.email'}}"></i>
+							</a>
+						{{/if}}
+						{{#if profile.streetAddress}}
+							<a href="https://www.google.com/maps/place/{{profile.city}}+{{profile.state}}+{{profile.zip}}+{{profile.streetAddress}}" target="_new" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.location'}}"></i>
+							</a>
+						{{/if}}
+						</div>
+					</span>
+					<div class="clearfix"></div>			
+				</div>
+				{{/each}}
+			{{/if}}
+			</div>
+		</div>
+	</div>
+</template>

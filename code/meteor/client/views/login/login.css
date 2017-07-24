@@ -1,0 +1,42 @@
+.break-line {
+  background-color: #F5F5F5; 
+  padding:0 10px;
+}
+
+.break-font { 
+  width:100%; 
+  text-align:center; 
+  border-bottom: 1px solid #000; 
+  line-height:0.1em; 
+  margin:10px 0 20px; 
+} 
+
+
+.break {
+  padding-top: 10px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 1px;
+}
+
+.welcome-msg {
+  padding-top: 80px;
+  padding-bottom: 30px;
+}
+
+.social-logins {
+  padding-bottom: 20px;
+}
+
+.talloo-logo {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  background: red;
+  padding-bottom: 5px;
+}
+
+.outside-padding {
+  padding-top: 20px;
+}
+

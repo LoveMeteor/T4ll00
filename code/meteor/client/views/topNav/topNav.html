@@ -1,0 +1,30 @@
+<template name="topNav">
+<nav class="navbar navbar-default navbar-fixed-top">
+	<span class="pull-left">
+		<img class="navbar-toggle" src="/img/talloo-logo.png">
+		<a class="navbar-brand" href="/">Boise</a>
+	</span>
+	<span class="pull-right" style="margin-right: 10px;">
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="/notifications">
+					<i class="{{dict 'icons.notifications'}}" style="color: #555555; font-size: 1.8em;"></i>
+					{{#if notifications}}
+						<span class="notification" style="font-size: .9em; color: #FFFFFF;">{{notificationCount}}</span>
+					{{/if}}
+				</a>
+			</li>
+		</ul>
+	</span>
+</nav>
+</template>
+
+<template name="basicTopNav">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Talloo</a>
+      </div>
+    </div>
+  </nav>
+</template>

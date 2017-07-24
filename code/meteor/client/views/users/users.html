@@ -1,0 +1,37 @@
+<template name="users">
+    <div>
+        <div>
+            <span class="h4">Your Management</span>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Mobile Number</th>
+                <th>Email</th>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Certified?</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            {{#each users}}
+                <tr>
+                    <th scope="row">{{no @index}}</th>
+                    <td>{{profile.phoneNumber}}</td>
+                    <td>{{emails.[0].address}}</td>
+                    <td>{{metadata.memberId}}</td>
+                    <td>{{profile.fullName}}</td>
+                    <td>
+                        <input type="checkbox" class="certify-checkbox" checked={{metadata.isCertified}} data-id={{_id}}>
+                    </td>
+                </tr>
+
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>

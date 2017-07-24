@@ -1,0 +1,1 @@
+MONGO_URL=mongodb://meteor:Gr33nappl3s@candidate.66.mongolayer.com:10001,candidate.65.mongolayer.com:10044/talloo?replicaSet=set-56c1f4c629a4a00e6a0003a1 MONGO_OPLOG_URL=mongodb://meteor:Gr33nappl3s@candidate.66.mongolayer.com:10001,candidate.65.mongolayer.com:10044/local?authSource=talloo meteor --settings=settings.json --mobile-server=https://app.talloo.com run ios-device

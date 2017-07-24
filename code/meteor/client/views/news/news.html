@@ -1,0 +1,248 @@
+<template name="news">
+	<div class="col-md-6">		
+		<div class="card hidden-on-mobile card-new-post">
+			<a href="#" id="new-post-btn">
+				<div class="content" style="background-color: #FFF;">
+					Share something ...
+				</div>
+			</a>
+		</div>
+		{{#each post in newsPosts}}
+		<div class="card">
+			<div class="content">
+				<div class="" style="padding-bottom: 20px;">
+					<span class="pull-left">
+						<img src="{{userImageUrl post.author}}{{avatarImageOpts}}" class="avatar profile-card-image">
+					</span>
+					<span class="pull-left">
+						<a href="/user/{{post.author}}"><strong>{{userName post.author}}</strong></a><br>
+						{{userCompany post.author}}
+					</span>
+					<span class="pull-right" name="info menu">
+						<ul style="list-style: none;">
+							<li class="dropdown dropdown-with-icons">
+								<a rel="tooltip" title="Menu"  href="#" class="timestamp dropdown-toggle" data-toggle="dropdown">
+									{{timeSinceReactive post.createdAt}} ago <i class="{{dict 'icons.moreMenu'}}"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-with-icons">
+								{{#if userIsAuthor post}}
+									<li>
+										<a href="#" id="{{post._id}}" class="edit-post-btn">
+											<i class="{{dict 'icons.edit'}}"></i> Edit
+										</a>
+									</li>
+									<li>
+										<a href="#" id="{{post._id}}" class="remove-post-btn">
+											<i class="{{dict 'icons.remove'}}"></i> Remove
+										</a>
+									</li>
+								{{/if}}
+
+									<li>
+										<a href="#" id="{{post._id}}" class="report-post-btn">
+											<i class="{{dict 'icons.info'}}"></i> Report
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</span>
+				</div>
+				<div style="padding-top: 32px;">
+					{{#if post.imageUrl}}
+						<img src="{{post.imageUrl}}?fit=max&h=505" class="card image" style="max-height: 505px; max-width: 100%; height: auto; width: auto;">
+					{{/if}}
+					<div>
+						{{{post.content}}}
+					</div>
+					<span class="pull-right">
+						<!--<span class="btn btn-xs" style="border: 0;" name="visibility">
+							<ul style="list-style: none;">
+								<li class="dropdown dropdown-with-icons">
+									<a rel="tooltip" title="Permissions"  href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<span  style="font-size: 1em;">Visibility &nbsp;</span> <i class="{{dict 'icons.public'}}" style="font-size: 1em;"></i>
+									</a>
+									<ul class="dropdown-menu dropdown-with-icons">
+									{{#if postIsPublic post}}
+										<li>
+											<a href="#">
+												<i class="{{dict 'icons.public'}}"></i> Public
+											</a>
+										</li>
+									{{else}}
+									{{#if postIsMyConnections post}}
+										<li>
+											<a href="#">
+												<i class="{{dict 'icons.myConnections'}}"></i> All Connections
+											</a>
+										</li>
+									{{else}}
+									{{#each viewerId in post.viewableBy}}
+										<li style="padding-left: 4px;">
+											<a href="/user/{{viewerId}}">
+												<img src="{{userImageUrl viewerId}}{{avatarImageOpts}}" class="avatar"> {{userName viewerId}}
+											</a>
+										</li>
+									{{/each}}
+									{{/if}}
+									{{/if}}
+									<li>
+									  <a href="#" id="{{post._id}}" class="remind-post-btn">
+										<i class="{{dict 'icons.edit'}}"></i> Edit
+									  </a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</span>
+						-->
+						<span class="btn btn-sm" style="border: 0px;">
+							<ul style="list-style: none; padding-left: 0;">
+								<li class="dropdown dropdown-with-icons" style=" padding-right: 0;">
+									<a title="Tools"  href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="{{dict 'icons.3dots'}}" style="font-size: 1.5em; color: #dd0000;"></i>
+									</a>
+										<ul class="dropdown-menu dropdown-with-icons">
+										<!-- {{#if postIsPublic post}}
+											<li>
+												<a href="#" id="{{post._id}}" class="share-post-btn">
+													<i class="{{dict 'icons.share'}}"></i> Share
+												</a>
+											</li>
+										{{/if}} -->
+										{{#if userPinned post}}
+											<li>
+												<a href="#" id="{{post._id}}" class="unpin-post-btn">
+												  &nbsp;&nbsp;Stop watching this post
+												</a>
+											</li>
+										{{else}}
+											<li>
+												<a href="#" id="{{post._id}}" class="pin-post-btn">
+												  &nbsp;&nbsp;Watch this post
+												</a>
+											</li>
+										{{/if}}
+											<li>
+												<a href="#" id="{{post._id}}" class="remind-post-btn">
+													&nbsp;&nbsp;Remind me about this
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+						</span>
+						<span class="btn btn-xs" style="border: 0;" name="like">
+							<ul style="list-style: none; padding-left: 0;">
+								<li class="dropdown">
+									<span>	
+										<a href="#">
+											<i class="{{dict 'icons.comment'}}" style="font-size: 1.3em; color: #dd0000;"></i> <span  style="font-size: 1.3em; color: #dd0000;">2</span>
+										</a>
+									</span>
+								</li>
+							</ul>
+						</span>
+						<span class="btn btn-xs" style="border: 0;" name="like">
+							<ul style="list-style: none; padding-left: 0;">
+								<li class="dropdown">
+									<span  style="font-size: 1.3em; color: #dd0000;">
+										<a href="#" id="{{post._id}}" style="font-size: 1em; color: #dd0000;" class="heart-btn {{dict 'icons.heartOn'}}{{userLikedIcon post}}" data-toggle="dropdown">
+											<span style="font-size: 1em; color: #dd0000;">{{likeCount post}}</span>
+										</a>
+									</span>
+									<ul class="dropdown-menu dropdown-with-icons">
+										{{#each likerId in post.likedBy}}
+											<li style="padding-left: 4px;">
+												<a href="/user/{{likerId}}">
+													<img src="{{userImageUrl likerId}}{{avatarImageOpts}}" class="avatar"> {{userName likerId}}
+												</a>
+											</li>
+										{{/each}}
+									</ul>
+								</li>
+							</ul>
+						</span>
+					</span>
+					<div class="clearfix"></div>
+					<div class="postComments">
+					{{#each comment in (commentsForPost post)}}
+						<div>
+							<span class="">
+								<a href="/user/{{comment.author}}"><img src="{{userImageUrl comment.author}}{{avatarImageOpts}}" class="avatar pull-left" style="height: 24px; width: 24px;"></a>
+								<a href="/user/{{comment.author}}">
+									<strong>{{userName comment.author}}</strong>
+								</a>
+							</span>
+							<span class="timestamp pull-right">
+							{{timeSinceReactive comment.createdAt}} &nbsp;&nbsp;
+							{{#if userIsAuthor comment}}
+								<a href="#" class="timestamp edit-post-comment-btn" id="{{comment._id}}">
+									<i class="{{dict 'icons.edit-pencil'}}"></i>
+								</a>
+							{{/if}}
+							</span>
+							<div class="clearfix"></div>
+							<div style="margin: 0px 0px 5px 35px;">
+								{{{comment.content}}}
+							</div>
+							{{#if comment.imageUrl}}
+							<div class="image">
+							  <img src="{{comment.imageUrl}}?fit=max&h=260" style="max-height: 260px; max-width: 72vw; width: auto;">
+							</div>
+							{{/if}}
+						</div>
+					{{/each}}
+				</div>
+				{{#if currentUser}}
+				<div class="commentFormContainer container-fluid" id="{{post._id}}">
+					{{#autoForm collection="NewsFeedPostComments" id=(commentFormId post) type="insert" class="form-inline"}}
+						<span class="commentWidth">
+							{{> afQuickField name="content" class="comment-field" label-class="sr-only" placeholder="Contribute ..." style="width: 100%" autocomplete="off"}}
+						</span>
+						<!--	{{#if showCommentControls}}
+						 <span class="pull-right">
+							{{> afQuickField name="imageUrl" label-class="sr-only" hidden="true"}}
+							<button type="submit" class="btn btn-default" style="float: right;">Reply</button>
+						</span>
+							{{/if}}-->
+					{{/autoForm}}
+				</div>
+				{{/if}}
+			</div>
+			</div>
+		</div>
+		{{/each}}
+		{{#if moreResults}}
+		<div id="showMoreResults" style="margin-left: 25px; margin-bottom: 25px;">
+			<span class="loading">Loading...</span>
+		</div>
+		{{/if}}
+	</div>
+	<div id="hidden-on-mobile" class="col-md-4">
+		
+		<div class="card">
+			<div class="content">
+				<h4 class="text-center">Meet-up</h4>
+				<div class="text-center">Never miss an opportunity to invest in a new relationship.</div>
+				<center>
+					<a href="http://www.meetup.com/talloo/events" target="_blank" class="btn btn-sm" style="background-color: #dd0000; color: #FFF; margin-top: 10px; border: 0;">
+						<strong>Attend a Meet-up</strong>
+					</a>
+				</center>
+			</div>
+		</div>
+
+		<div>
+			<a href="/saved" class="btn btn-sm btn-fill-white" style="border-color: #CCC;"><i class="{{dict 'icons.pinned'}}"></i> &nbsp;Watched Posts</a>
+			<a href="" id="invite-btn" class="btn btn-sm btn-fill-white" style="border-color: #CCC;"><i class="{{dict 'icons.airplane'}}"></i> &nbsp;Share Talloo</a>
+		</div>
+		<div class="clearfix"></div>
+		<div style="margin-top: 20px;">
+			<span class="timestamp">
+				<a href="https://talloo.zendesk.com/hc/en-us/articles/205888306-Privacy-Policy" target="_blank">Privacy</a> - <a href="https://talloo.zendesk.com/hc/en-us/articles/205888526-Terms-of-Service" target="_blank">Terms</a> - <a href="https://talloo.zendesk.com/hc/en-us/articles/206219473-Acceptable-Use-Policy" target="_blank">Acceptable Use</a> - <a href="https://talloo.zendesk.com" target="_blank">Help</a><br>
+				Talloo &copy; 2016
+			</span>
+		</div>
+	</div>
+</template>

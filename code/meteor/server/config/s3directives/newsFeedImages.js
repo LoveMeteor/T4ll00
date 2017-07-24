@@ -1,0 +1,21 @@
+Slingshot.createDirective("newsFeedImages", Slingshot.S3Storage, {
+  bucket: "talloo",
+  maxSize: null,
+  acl: "public-read", // can we do better?
+  allowedFileTypes: ['image/png', 'image/jpeg', 'image/gif'],
+
+  authorize: function () {
+    // Deny uploads if user is not logged in.
+    if (!this.userId) {
+      var message = "Please login before posting files";
+      throw new Meteor.Error("Login Required", message);
+    } else {
+      return true;
+    }
+  },
+
+  key: function (file) {
+    // Genereate an S3 storage path with collection name and user ID, and a random (ID-style) filename
+    return 'images/newsFeedImages/' + this.userId + '/' + Random.id([24]) + '.' + fileExtension(file.name);
+  }
+});

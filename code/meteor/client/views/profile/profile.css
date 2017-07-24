@@ -1,0 +1,39 @@
+tr {
+	border-top: 0;
+}
+
+.profile-image {
+  height: 800px;
+  width: 800px;
+}
+
+#profileImageContainer {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+#uploadPhoto {
+  position: absolute;
+  margin-left: -5px;
+  margin-top: 48px;
+}
+
+#profileUpload {
+  visibility:hidden;
+  display: none;
+}
+
+.switch-color {
+    color: #fff;
+    background: #DD0000;
+}
+
+.round-input{
+  padding-top: 5px;
+  border: none;
+}
+
+.input-border {
+  border: none;
+}

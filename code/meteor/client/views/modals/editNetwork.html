@@ -1,0 +1,22 @@
+<template name="editNetwork">
+  <div class="modal fade" id="edit-network-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        {{#autoForm collection="Groups" id="editNetworkForm" type="update" class="form-inline" doc=networkDoc}}
+          <div class="modal-body">
+            <h4>Manage Network</h4>
+            <span class="col-md-12 wideleft">
+  						{{> afQuickField name="name" label="Network Name" placeholder="Network Name" class="name-field" style="width: 100%;"}}
+  					</span>
+  					<span class="col-md-12">
+  						{{> afQuickField name="users" label="Users" placeholder="Select Members" class="users-field"}}
+  					</span>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-sm" id="save-edit-network-btn">Save</button>
+            </div>
+          </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>

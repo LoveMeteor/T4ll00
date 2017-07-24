@@ -1,0 +1,15 @@
+{
+  "env": {
+    "NODE_ENV": "production",
+    "ROOT_URL": "http://talloo.endnorth.com",
+    "MONGO_URL": "mongodb://meteor:Gr33nappl3s@candidate.66.mongolayer.com:10001,candidate.65.mongolayer.com:10044/talloo?replicaSet=set-56c1f4c629a4a00e6a0003a1",
+    "MONGO_OPLOG_URL": "mongodb://meteor:Gr33nappl3s@candidate.66.mongolayer.com:10001,candidate.65.mongolayer.com:10044/local?authSource=talloo",
+    "MAIL_URL": "smtp://postmaster@app.talloo.com:6463d538e5f3c09b728345a36a54e6e2@smtp.mailgun.org:587"
+    },
+  "AWSAccessKeyId": "AKIAJWJXNFGCPRXAXLRQ",
+  "AWSSecretAccessKey": "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",
+  "kadira": { 
+    "appId": "SkoRBHmCwCBYd7T4a", 
+    "appSecret": "a2844546-e927-46a0-9222-f7ca4146bbd7" 
+  }
+}

@@ -1,0 +1,148 @@
+<template name="user">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="content">           
+            	<span class="col-md-4">
+            	{{#with user}}
+            		{{#if profile.profileImage}}
+                            <img class="profile-card-image" src="{{profile.profileImage}}{{avatarProfileImageOpts}}">
+                        {{else}}
+                            <img class="avatar" src="{{defaultPhoto}}?fit=max&w=300&h=100">
+                    {{/if}}<br><br>
+				{{/with}}	
+            	</span>
+            	<span class="col-md-8">
+            		{{#with user}}
+            		<span class="col-md-10">	
+            			<b>{{profile.fullName}}</b>
+            			{{#if user.profile.title}}
+							{{profile.title}}
+						{{/if}}<br>
+						{{#if profile.company}}
+							{{profile.company}}
+						{{/if}}
+            		</span>
+            		<span class="col-md-2">
+            		
+            			{{#if favorite}}
+							 <a id="unfavorite" href="#" class="btn-favorite ion-ios-star pull-right" style="font-size: 1.2em;"></a>
+						 {{else}}
+							 <a id="favorite" href="#" class="btn-favorite ion-ios-star-outline pull-right" style="font-size: 1.2em;"></a>
+						 {{/if}}
+						
+            		</span>
+            		<br>
+					
+						
+						<br><br>
+					
+            			
+					{{/with}}
+            	</span>
+            	<div class="clearfix"></div>
+            	<span class="col-md-6">
+            	{{#with user}}
+            	    {{#if profile.phoneNumber}}
+                        <a id="phoneNumber"
+                           href="tel:{{profile.phoneNumber}}">{{formatPhone profile.phoneNumber}}</a><br>
+                    {{/if}}
+                    {{#if emails.[0].address}}
+                        <a href="mailto:{{emails.[0].address}}">{{emails.[0].address}}</a><br>
+                    {{/if}}
+                    {{#if profile.webAddress}}
+                        <a href="{{profile.webAddress}}">{{profile.webAddress}}</a><br><br>
+                    {{/if}}
+                    {{#if profile.streetAddress}}
+                        <a href="https://www.google.com/maps/place/{{profile.city}}+{{profile.state}}+{{profile.zip}}+{{profile.streetAddress}}"
+                           target="_new">{{profile.streetAddress}}<br>{{profile.city}}
+                            , {{profile.state}} {{profile.zip}}</a><br>
+                    {{/if}}
+
+            	<div class="clearfix"></div>
+
+                {{/with}}
+            	</span>
+            	<span class="col-md-6">
+            	{{#with user}}
+            	{{#if profile.linkedInProfileUrl}}
+                        <a href="{{profile.linkedInProfileUrl}}" target="_blank" style="margin-right: 10px;">
+							<i class="ion-social-linkedin"></i>
+						</a>
+                    {{/if}}
+                        {{#if profile.twitterProfileUrl}}
+                            <a href="http://www.twitter.com/{{profile.twitterProfileUrl}}" target="_blank"
+                               style="margin-right: 10px;">
+						 	<i class="ion-social-twitter"></i>
+						 </a>
+                        {{/if}}{{#if profile.facebookProfileUrl}}
+                        <a href="{{profile.facebookProfileUrl}}" target="_blank">
+						 	<i class="ion-social-facebook"></i>
+						 </a>
+                    {{/if}}
+                {{/with}}
+            	</span>
+            	<div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <span class="h4">
+			History
+		</span>
+        <span>
+			<!-- // only visible when the viewer is the account owner -->
+			<a id="historyToggle" href="#"><span class="btn btn-sm btn-fill-white pull-right">
+                {{#if historyVisible}}
+                    Hide
+                {{else}}
+                    Show
+                {{/if}}
+
+            </span></a>
+            <!-- END // only visible when the viewer is the account owner -->
+		</span>
+        <div style="margin-top: 20px;"></div>
+        <div class="clearfix"></div>
+        {{#if historyVisible}}
+            {{> userHistory}}
+        {{/if}}
+    </div>
+</template>
+<template name="userHistory">
+    {{#each recentPosts}}
+        <div class="card">
+            <div class="content">
+                <div class="" style="padding-bottom: 20px;">
+				<span class="pull-left">
+					<img src="{{userMeta.profileImage}}{{avatarImageOpts}}" class="avatar profile-card-image">
+				</span>
+                    <span class="pull-left">
+					<a href="/2/{{post.author}}"><strong>{{userMeta.fullName}}</strong></a><br>
+                        {{userMeta.company}}
+				</span>
+                    <span class="timestamp pull-right" name="info menu">
+					{{timeSinceReactive createdAt}} ago
+				</span>
+                </div>
+                <div style="padding-top: 32px;">
+                    {{#if imageUrl}}
+                        <img src="{{imageUrl}}?fit=max&h=505" class="card image"
+                             style="max-height: 505px; max-width: 100%; height: auto; width: auto;">
+                    {{/if}}
+                    <div>
+                        {{{content}}}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    {{#if noHistory}}
+        <div class="card">
+            <div class="content">
+                You have no any history
+            </div>
+        </div>
+    {{/if}}
+
+</template>

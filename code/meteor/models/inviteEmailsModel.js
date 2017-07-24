@@ -1,0 +1,1 @@
+inviteEmails = new Mongo.Collection('inviteEmails');

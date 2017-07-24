@@ -1,0 +1,21 @@
+{
+  "apn": {
+    "passphrase": "Gr33n@pples!",
+    "key": "prodKey.pem",
+    "cert": "prodCert.pem"
+  },
+  "apn-dev": {
+    "passphrase": "Gr33n@pples!",
+    "key": "devKey.pem",
+    "cert": "devCert.pem"
+  },
+  // "gcm": {
+  //   "apiKey": "GET_THIS_FROM_GOOGLE_DEVELOPERS_CONSOLE",
+  //   "projectNumber": GET_THIS_FROM_GOOGLE_DEVELOPERS_CONSOLE
+  // },
+  "production": true,
+  "badge": true,
+  "sound": true,
+  "alert": true,
+  "vibrate": true
+}

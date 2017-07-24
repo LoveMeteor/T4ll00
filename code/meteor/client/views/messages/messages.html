@@ -1,0 +1,53 @@
+<template name="messages">
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="content">      
+        <div class="header">
+          <span class="h4 title">Conversations</span>
+          <span class="pull-right">
+            <li class="dropdown" style="list-style-type: none;">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="{{dict 'icons.menuDown'}}" style="font-size: 2em; color:#333;"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/new-message">New Message</a></li>
+                <li><a href="#">View Archive</a></li>
+              </ul>
+            </li>       
+          </span>                       
+        </div>
+      </div>
+      
+      <div class="content" style="background-color:#FFF;">
+        <table class="table table-hover">
+          <tbody>
+            {{#each conversations}}
+            <tr>
+              <td width="40px">
+                <a href="/user/{{user_id}}">
+                  <img src="{{user_imageUrl}}" class="avatar"> 
+                </a>
+              </td>
+              <td width="*" class="description">
+                <a href="/message-single"><span class="h6">{{userName user_id}}</span><br>{{{lastMessage.content}}}</a> <!-- Row should be highlighted when there is a new message that the user has not seen. -->
+              </td>
+            </tr>
+            {{/each}}
+            <!-- <tr>
+              <td>
+                <a href="user">
+                  <img src="assets/img/faces/2.jpg" class="avatar">
+                </a>
+              </td>
+              <td class="description">
+                <a href="message-single"><span class="h6">Jennifer Harris</span><br>From what I can see it is going through this month.</a>
+              </td>
+            </tr> -->                       
+          </tbody>
+        </table>
+      </div> 
+    </div>
+  </div> <!-- end the conversations pane -->             
+  
+</template>

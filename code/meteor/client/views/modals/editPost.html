@@ -1,0 +1,27 @@
+<template name="editNewsFeedPost">
+	<div class="modal fade" id="edit-post-modal">
+    	<div class="modal-dialog">
+      		<div class="modal-content">
+        		{{#autoForm collection="NewsFeedPosts" id="editNewsFeedPostForm" type="update" class="form-inline" doc=newsFeedPostDoc}}
+          			<div class="modal-body">
+                        <div>
+								<span class="pull-left">
+									<h4>Edit Post</h4>
+								</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <span class="wideLeft">{{> afQuickField name="content" label-class="sr-only" rows=15 placeholder="What's new?" class="edit-post-field" style="width: 100%;"}}</span>
+                        <div class="clearfix"></div>
+
+					</div>
+                    <div class="modal-footer">
+                        <span class="pull-right"><button type="submit" class="btn btn-sm" style="margin-top: 5px;">Post</button></span>
+                        <span class="pull-right" style="margin-right: 10px;">{{> afQuickField name="imageUrl" label-class="sr-only"}}</span>
+                    </div>
+                    <div class="clearfix"></div>
+				{{/autoForm}}
+			</div>
+		</div>
+	</div>
+</template>

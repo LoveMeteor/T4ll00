@@ -1,0 +1,166 @@
+<template name="workspace">
+	<div class="col-md-10">
+		<div class="h1">
+			{{currentWorkspace.name}}
+			<span class="pull-right" id="hidden-on-mobile">
+				{{#if userIsOwner currentWorkspace}}
+					<a href="#" id="{{currentWorkspace._id}}" class="archive-workspace-btn btn btn-sm btn-fill-white">Archive</a>
+					<a href="#" id="{{currentWorkspace._id}}" class="duplicate-workspace-btn btn btn-sm btn-fill-white">Duplicate</a>
+					<a href="#" id="{{currentWorkspace._id}}" class="rename-workspace-btn btn btn-sm btn-fill-white">Rename</a>
+				{{else}}
+					<a href="#" id="{{currentWorkspace._id}}" class="leave-workspace-btn btn btn-sm btn-fill-white">Leave</a>
+				{{/if}}
+			</span>
+		</div>
+	</div>
+	<div class="col-md-10" style="height:{{clientHeight}}">
+		<div class="card" style="position:absolute;left:0px;top:0px;right:0;bottom:130px;">
+			<div class="content scroll" id="chat-content-div" style="height: 100%;">
+				{{#each posts}}
+					<a href="/user/{{author}}">
+						<img rel="tooltip" title="{{userName author}}" src="{{userImageUrl author}}" width="20px" height="20px" style="border-radius: 50%; margin-top: 5px;">
+						<strong>{{userName author}}</strong>
+					</a>
+					<span class="timestamp pull-right">{{timeSinceReactive createdAt}}</span>
+					{{#if userIsAuthor this}}
+						<a href="#" class="btn btn-sm timestamp borderless edit-post-btn pull-right" id="{{this._id}}">
+							<i class="{{dict 'icons.edit-pencil'}}" style="font-size: .8em;"></i>
+						</a>
+					{{/if}}
+					<div style="padding-left: 35px;">
+						{{{content}}}
+					</div>
+					{{#if imageUrl}}
+						<img src="{{imageUrl}}?fit=max&h=505" class="card image" style="max-height: 505px; max-width: 100%; height: auto; width: auto;">
+					{{/if}}
+
+					{{#if lastNewPost}}
+						<p class="inline-notifications"> --- You're up to date. ---</p>
+					{{/if}}
+					<div class="clearfix"></div>
+				{{/each}}
+			</div>
+		</div>
+		<div class="card" id="chatImput" style="position:absolute; left:0px; bottom:30px; right:0;">
+			<div class="content" style="margin-bottom:0;">
+				{{#if currentWorkspace.archived}}
+					<!-- DON'T SHOW THE NEW POST FORM IF ARCHIVED -->
+					{{else}}
+					<div name="postbox">
+						{{#autoForm collection="WorkspacePosts" id="newWorkspaceMessageForm" type="insert" doc=currentWorkspace}}
+							<span class="col-md-10">
+								<span class="wideLeft">
+									{{> afQuickField name="content" class="workspace-post-field" label-class="sr-only" placeholder="Type a message ... press enter." style="width: 100%;" autocomplete="off"}}
+								</span>
+								<span class="pull-left col-md-4" id="hidden">
+									{{> afQuickField name="permissions" label-class="sr-only"}}
+										{{#if customPermissions}}
+											{{> afQuickField name="viewableBy" label-class="sr-only" type="universe-select" options=workspaceConnections uniPlaceholder="Select who should see your post."}}
+										{{/if}}
+								</span>	
+							</span>	
+							<span class="col-md-2" id="hidden">
+								<span class="pull-right">
+									<button type="submit" class="btn btn-sm">Send</button>
+								</span>
+								<span class="pull-right btn btn-sm borderless">
+									{{> afQuickField name="imageUrl" label-class="sr-only"}}
+								</span>
+							</span>	
+						{{/autoForm}}
+						<div class="clearfix"></div>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4" id="hidden">
+		<div style="padding: 20px;">
+			<span class="h4">Members</span>
+		</div>
+		<div class="card">
+			<div class="content scroll">
+				<span class="row">
+					{{#with currentWorkspace.ownerId}}
+						<a href="/user/{{this}}"><img src="{{memberImageUrl}}{{avatarSmallImageOpts}}" class="avatar"></a>
+						<a href="/user/{{this}}"><strong>{{memberName}}</strong></a>
+						<span class="category pull-right">Leader</span>
+						<div class="{{userStatus}}"></div>
+					{{/with}}
+					{{#each currentWorkspace.members}}
+						<a href="/user/{{this}}"><img src="{{memberImageUrl}}{{avatarSmallImageOpts}}" class="avatar"></a>
+						<a href="/user/{{this}}"><strong>{{memberName}}</strong></a>
+						<span class="category pull-right">Contributor</span>
+						<div class="{{userStatus}}"></div>
+					{{/each}}
+				</span>
+				<div class="clearfix"></div>
+					<div>
+					{{#if userIsOwner currentWorkspace}}
+					{{#if currentWorkspace.archived}}
+					{{else}}
+					{{#autoForm collection="Workspaces" id="addWsUserForm" type="update" doc=currentWorkspace class="form-inline"}}
+						{{> afQuickField name="members" label-class="sr-only" type="universe-select" options=universeConnections multiple=true uniPlaceholder="Add or Remove Members"}}
+						<br><button type="submit" class="btn btn-sm">Update</button>
+					{{/autoForm}}
+					{{/if}}
+					{{/if}}
+					</div>
+				</div>
+			</div>
+	</div>
+
+<div class="modal fade" id="add-ws-user-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+        {{#autoForm collection="Workspaces" id="addWsUserForm" type="update" doc=currentWorkspace class="form-inline"}}
+			<div class="header">
+				<h4>Update members</h4>
+			</div>
+			<div class="subFormFullWidth">
+				{{> afQuickField name="members" label-class="sr-only" type="universe-select" options=universeConnections multiple=true uniPlaceholder="Type a name to add a person to this group."}}
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-sm">Update</button>
+			</div>
+        {{/autoForm}}
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="edit-ws-post-modal">
+    <div class="modal-dialog">
+		<div class="modal-content">
+        {{#autoForm collection="WorkspacePosts" id="editWorkspacePostForm" type="update" doc=editWorkspacePostDoc}}
+        	<div class="modal-body">
+            	<div class="container-fluid">
+              		<div>
+                		<img src="{{currentUser.profile.profileImage}}{{avatarSmallImageOpts}}" class="avatar" style="border-radius: 50%;">
+                		<span class="hidden-xxs"><strong>{{currentUser.profile.fullName}}</strong></span>
+                		<span class="pull-right" style="margin-top: -6px;">
+                  			{{> afQuickField name="permissions" label-class="sr-only"}}
+                		</span>
+             		</div>
+					{{#if customPermissions}}
+					<div class="subFormFullWidth" style="padding-top: 12px; width: 100%;">
+						{{> afQuickField name="viewableBy" label-class="sr-only" type="universe-select" options=workspaceConnections uniPlaceholder="Who should see this post?"}}
+					</div>
+					{{/if}}
+					<span class="wideLeft">
+						{{> afQuickField name="content" class="workspace-post-field" label-class="sr-only" placeholder="What's new?" style="width: 100%;" autocomplete="off"}}
+					</span>
+					<div style="padding: 24px 0px;">
+					<span class="pull-right" style="margin-top: -12px;">
+						{{> afQuickField name="imageUrl" label-class="sr-only"}}
+					</span>
+                </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-sm">Update</button>
+          </div>
+        {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>

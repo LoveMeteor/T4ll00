@@ -1,0 +1,376 @@
+<template name="profile">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="content">
+                <div style="margin:10px;">
+                    <img class="profile-card-image" src="{{profileImage}}{{avatarProfileImageOpts}}">
+                    <a id="uploadPhoto"><i class="ion-ios-camera-outline" style="font-size: 24px; margin-left: 10px;"></i> </a>
+                    <input id="profileUpload" type="file" name="pic" accept="image/*">
+                </div>
+                
+                    {{#if editName}}
+                        <div class="input-append">
+                            <input id="firstName" class="span2 input-border" placeholder="First Name" type="text">
+                            <input id="lastName" class="span2 input-border" placeholder="Last Name" type="text">
+                            <input id="saveName" type="submit" class="btn btn-xs" value="Save">
+                        </div>
+                    {{else}}
+                        <strong style="margin-top: 10px;">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</strong>
+                        &nbsp;<i rel="tooltip" title="Edit" style="font-size: .6em;" id="editName" class="ion-edit"></i>
+                    {{/if}}<br>
+                    <strong>
+                        {{#if editTitle}}
+                            <div class="input-append">
+                                <input id="newTitle" class="span2 input-border" placeholder="Job title" type="text">
+                                <input id="saveTitle" type="submit" class="btn btn-xs" value="Save">
+                            </div>
+                        {{else}}
+                            {{#if title}}
+                                {{currentUser.profile.title}}, <i rel="tooltip" title="Edit" style="font-size: .6em;"
+                                                                  id="editTitle" class="ion-edit"></i>
+                            {{else}}
+                                <a id="addTitle" href="#">Job title</a>
+                            {{/if}}
+                        {{/if}}<br>
+                    </strong>
+                    <strong>
+                        {{#if editCompany}}
+                            <div class="input-append">
+                                <input id="newCompany" class="span2 input-border" placeholder="Company" type="text">
+                                <input id="saveCompany" type="submit" class="btn btn-xs" value="Save">
+                            </div>
+                        {{else}}
+                            {{#if company}}
+                                {{currentUser.profile.company}} <i rel="tooltip" title="Edit" style="font-size: .6em;"
+                                                                   id="editCompany" class="ion-edit"></i>
+                            {{else}}
+                                <a id="addCompany" href="#">Company</a>
+                            {{/if}}
+                        {{/if}}<br>
+                    </strong>
+                    <hr style="border-color: #ccc;">
+                
+                {{#if pendingVerification}}
+                    <div class="input-append">
+                        <input id="smsConfirmCode" class="span2 input-border" placeholder="Confirmation Code"
+                               type="text">
+                        <input id="saveConfirm" type="submit" class="btn btn-xs" value="Confirm Phone">
+                        <i id="resetConfirm" class="ion-edit" style="font-size: .6em;"></i>
+                    </div>
+                {{else}}
+                    {{#if editPhone}}
+                        <div class="input-append">
+                            <input id="newPhoneNumber" class="span2 input-border" placeholder="Mobile Number"
+                                   type="tel">
+                            <input id="saveNumber" type="submit" class="btn btn-xs" value="Save">
+                        </div>
+                    {{else}}
+                        {{#if phoneNumber}}
+                            <a id="phoneNumber"
+                               href="tel:{{currentUser.profile.phoneNumber}}">{{formatPhone currentUser.profile.phoneNumber}}</a>&nbsp;<i
+                                rel="tooltip" title="Edit" style="font-size: .6em;" id="editPhoneNumber"
+                                class="ion-edit"></i><br>
+                        {{else}}
+                            <a id="addPhone">Mobile Number</a><br>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+
+                {{#if editEmail}}
+                    <div class="input-append">
+                        <input id="newEmail" class="span2 input-border" placeholder="Email" type="email">
+                        <input id="saveEmail" type="submit" class="btn btn-xs" value="save">
+                    </div>
+                {{else}}
+                    {{#if email}}
+                        <a href="mailto:{{currentUser.emails.[0].address}}">{{currentUser.emails.[0].address}}</a>&nbsp;<i
+                            rel="tooltip" title="Edit" style="font-size: .6em;" id="editEmail" class="ion-edit"></i><br>
+                    {{else}}
+                        <a id="editEmail">Email Address</a><br>
+                    {{/if}}
+                {{/if}}
+
+                {{#if editWebAddress}}
+                    <div class="input-append">
+                        <input id="webAddress" class="span2 input-border" placeholder="http://..." type="text">
+                        <input id="saveWebAddress" type="submit" class="btn btn-xs" value="Save">
+                    </div>
+                {{else}}
+                    {{#if webAddress}}
+                        <a href="{{currentUser.profile.webAddress}}">{{currentUser.profile.webAddress}}</a>&nbsp;<i
+                            rel="tooltip" title="Edit" style="font-size: .6em;" id="editWebAddress"
+                            class="ion-edit"></i><br>
+                    {{else}}
+                        <a id="editWebAddress" href="#">http://www...</a><br>
+                    {{/if}}
+                {{/if}}
+
+                <strong>Business Address</strong><br>
+                {{#if editAddress}}
+                    <div class="input-append">
+                        <!-- <span class="input-group-addon" id="basic-addon1">Address</span> -->
+                        <input id="street" type="text" class="span2 round-input" placeholder="Address">
+                    </div>
+                    <div class="input-append">
+                        <!-- <span class="input-append-addon" id="basic-addon1">City</span> -->
+                        <input id="city" type="text" class="span2 round-input" placeholder="City">
+                    </div>
+                    <div class="input-append">
+                        <!-- <span class="input-append-addon" id="basic-addon1">State</span> -->
+                        <input id="state" type="text" class="span2 round-input" placeholder="State">
+                    </div>
+                    <div class="input-append">
+                        <!-- <span class="input-append-addon" id="basic-addon1">Zip</span> -->
+                        <input id="zip" type="text" class="span2 round-input" placeholder="Zip">
+                        <input id="saveAddress" type="submit" class="btn btn-xs" value="Save">
+                    </div>
+                {{else}}
+                    {{#if address}}
+                        <a href="https://www.google.com/maps/place/{{currentUser.profile.city}}+{{currentUser.profile.state}}+{{currentUser.profile.zip}}+{{currentUser.profile.streetAddress}}"
+                           target="_new">{{currentUser.profile.streetAddress}}<br>{{currentUser.profile.city}}
+                            , {{currentUser.profile.state}} {{currentUser.profile.zip}}</a>&nbsp;<i rel="tooltip"
+                                                                                                    title="Edit"
+                                                                                                    style="font-size: .6em;"
+                                                                                                    id="editAddress"
+                                                                                                    class="ion-edit"></i><br><br>
+                    {{else}}
+                        <a id="editAddress" href="#">Add address</a><br><br>
+                    {{/if}}
+                {{/if}}
+
+                <strong>Social Profiles</strong><br>
+                {{#if editLinkedIn}}
+                    <div class="input-append">
+                        <input id="linkedinAdress" class="span2 input-border" placeholder="http://www...." type="text">
+                        <input id="saveLinkedInAddress" type="submit" class="btn btn-xs" value="Save">
+                    </div>
+                {{else}}
+                    {{#if currentUser.profile.linkedInProfileUrl}}
+                        <a href="{{currentUser.profile.linkedInProfileUrl}}" target="_blank">LinkedIn
+                            Profile</a>&nbsp;<i rel="tooltip" title="Edit" style="font-size: .6em;" id="editLinkedIn"
+                                                class="ion-edit"></i><br>
+                    {{else}}
+                        <a id="editLinkedIn" href="#">Add Linkedin Profile</a><br>
+                    {{/if}}
+                {{/if}}
+
+                {{#if editFacebook}}
+                    <div class="input-append">
+                        <input id="facebookAddress" class="span2 input-border" placeholder="http://www...." type="text">
+                        <input id="saveFacebookAddress" type="submit" class="btn btn-xs" value="Save">
+                    </div>
+                {{else}}
+                    {{#if currentUser.profile.facebookProfileUrl}}
+                        <a href="{{currentUser.profile.facebookProfileUrl}}" target="_blank">Facebook
+                            Profile</a>&nbsp;<i rel="tooltip" title="Edit" style="font-size: .6em;" id="editFacebook"
+                                                class="ion-edit"></i><br>
+                    {{else}}
+                        <a id="editFacebook" href="#">Add Facebook Profile</a><br>
+                    {{/if}}
+                {{/if}}
+
+
+                {{#if editTwitter}}
+                    <div class="input-append">
+                        <input id="twitterAddress" class="span2 input-border" placeholder="http://www...." type="text">
+                        <input id="saveTwitterAddress" type="submit" class="btn btn-xs" value="Save">
+                    </div>
+                {{else}}
+                    {{#if currentUser.profile.twitterProfileUrl}}
+                        <a href="{{currentUser.profile.twitterProfileUrl}}" target="_blank">Twitter Profile</a>&nbsp;<i
+                            rel="tooltip" title="Edit" style="font-size: .6em;" id="editTwitter"
+                            class="ion-edit"></i><br>
+                    {{else}}
+                        <a id="editTwitter" href="#">Add Twitter Profile</a>
+                    {{/if}}
+                {{/if}}
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div>
+		<span class="h3">
+			Account Settings
+		</span>
+            <span>
+			<!-- // only visible when the viewer is the account owner -->
+			<a id="accountSettingsToggle" href="#"><span class="btn btn-sm btn-fill-white pull-right">
+                {{#if settingsEdit}}
+                    Hide
+                {{else}}
+                    Show
+                {{/if}}
+            </span></a>
+                <!-- END // only visible when the viewer is the account owner -->
+		</span>
+            <div style="margin-top: 20px;"></div>
+            <div class="clearfix"></div>
+            {{#if settingsEdit}}
+                {{> accountSettings}}
+            {{/if}}
+        </div>
+        <div>
+		<span class="h3">
+			History
+		</span>
+            <span>
+			<!-- // only visible when the viewer is the account owner -->
+			<a id="historyToggle" href="#"><span class="btn btn-sm btn-fill-white pull-right">
+                {{#if historyVisible}}
+                    Hide
+                {{else}}
+                    Show
+                {{/if}}
+
+            </span></a>
+                <!-- END // only visible when the viewer is the account owner -->
+		</span>
+            <div style="margin-top: 20px;"></div>
+            <div class="clearfix"></div>
+            {{#if historyVisible}}
+                {{> history}}
+            {{/if}}
+        </div>
+
+    </div>
+
+
+</template>
+
+
+<template name="accountSettings">
+    <div class="card">
+        <div class="content">
+            <strong>Privacy</strong><br>
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td width="80%">
+                        Phone Number
+                    </td>
+                    <td width="20%">
+                        <input id="phone-switch" type="checkbox" data-size="mini" name="my-checkbox"
+                               data-on-text="Visible" data-off-text="hidden" data-on-color="success"
+                               checked="{{phoneCheck}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address
+                    </td>
+                    <td>
+                        <input id="address-switch" type="checkbox" data-size="mini" name="my-checkbox"
+                               data-on-text="Visible" data-off-text="hidden" data-on-color="success"
+                               checked="{{addressCheck}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email Address
+                    </td>
+                    <td>
+                        <input id="email-switch" type="checkbox" data-size="mini" name="my-checkbox"
+                               data-on-text="Visible" data-off-text="hidden" data-on-color="success"
+                               checked="{{emailCheck}}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button id="saveSettings" type="submit" class="btn btn-sm pull-right" style="margin-top: 20px;">Save
+                Settings
+            </button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--
+    <div class="card">
+        <div class="content">
+            <span class="header h4">Notification Preferences</span>
+            <table class="table table-hover ">
+                <thead>
+                    <th width="80%" data-field="setting"></th>
+                    <th width="20%" data-field="switch"></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="setting-column">
+                            Mobile Text Message
+                        </td>
+                        <td class="switch-column">
+                             <input id="smsnotify-switch" type="checkbox" data-size="mini" name="my-checkbox" data-on-text="Visible" data-off-text="hidden" data-on-color="success" checked="smsnotifyCheck">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="setting-column">
+                            Email
+                        </td>
+                        <td class="email-column">
+                             <input id="emailnotify-switch" type="checkbox" data-size="mini" name="my-checkbox" data-on-text="Visible" data-off-text="hidden" data-on-color="success" checked="emailnotifyCheck">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="setting-column">
+                            Browser Alerts
+                        </td>
+                        <td class="switch-column">
+                             <input id="browsernotify-switch" type="checkbox" data-size="mini" name="my-checkbox" data-on-text="Visible" data-off-text="hidden" data-on-color="success" checked="browsernotifyCheck">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <span class="col-md-6"><p class="category" style="padding-left: 20px; padding-bottom: 20px;">Alerts on your mobile phone are controlled under your device settings.</p></span>
+            <span class="col-md-6"><button id="saveSettings" type="submit" class="btn btn-sm pull-right" style="margin-top: 20px;">Save Settings</button></span>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    -->
+    <!--         <span class="pull-right">
+      <a id="deactivateAccount" href="#"><span class="btn btn-sm">Deactivate Account</span></a>
+    </span> -->
+</template>
+
+<template name="history">
+    {{#each recentPosts}}
+        <div class="card">
+            <div class="content">
+                <div class="" style="padding-bottom: 20px;">
+				<span class="pull-left">
+					<span class="pull-left">
+						<img src="{{profileImage}}{{avatarImageOpts}}" class="avatar profile-card-image">
+					</span>
+					<span class="pull-left">
+						<strong>{{currentUser.profile.fullName}}</strong><br>
+                        {{currentUser.profile.company}}
+					</span>
+				</span>
+                    <span class="pull-right" name="info menu">
+					<span class="timestamp pull-right" name="header-right">
+						{{timeSinceReactive createdAt}} ago
+					</span>
+				</span>
+                </div>
+                <div style="padding-top: 32px;">
+                    {{#if imageUrl}}
+                        <img src="{{imageUrl}}?fit=max&h=505" class="card image"
+                             style="max-height: 505px; max-width: 100%; height: auto; width: auto;">
+                    {{/if}}
+                </div>
+                <div style="padding-bottom: 28px; min-height: 32px;">
+                    {{{content}}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    {{/each}}
+    {{#if noHistory}}
+        <div class="card">
+            <div class="content">
+                You have no any history
+            </div>
+        </div>
+    {{/if}}
+
+</template>

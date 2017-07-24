@@ -1,0 +1,40 @@
+<template name="notifications">
+	<div class="col-md-8">
+		<div>
+			<span class="h1">
+				Notifications
+			</span>
+		</div>
+		<div style="margin-top: 20px;"></div>
+		<div class="card">
+			<div class="content">
+				<div id="notifications">
+					<table id="bootstrap-table" class="table table-hover">
+						<thead>
+							<th width="10%"></th>
+							<th width="90%"></th>
+						</thead>
+						<tbody>
+						{{#each notifications}}
+							<tr style="height: 30px;">
+								<td style="border: 0;">
+									<a href="{{link}}">
+										{{#if direct}}
+											<img src="{{userImage sourceUser}}" class="avatar" style="width: 20px; height: 20px;">
+										{{else}}
+										<span class="btn btn-sm borderless"><i class="{{icon}}"></i></span>
+									  {{/if}}
+									</a>
+								</td>
+								<td style="border: 0;">
+									<a href="{{link}}">{{text}}</a><span class="pull-right"><i rel="tooltip" title="Dismiss" id="{{actionItemId}}" class="ion-ios-checkmark-outline dismiss-notice"></i></span>
+								</td>
+							</tr>
+						{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

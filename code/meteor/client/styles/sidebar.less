@@ -1,0 +1,194 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+  display: block;
+  z-index: 1;
+  color: #FFF;
+  font-weight: 200;
+}
+.sidebar .sidebar-wrapper {
+  width: 260px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-right: -17px;
+  padding-right: 0px;
+  z-index: 4;
+  height: 100vh;
+  background-color: #FFFFFF;
+  /*height: calc(100vh - 64px);*/
+}
+.sidebar .sidebar-wrapper > .nav {
+  margin-top: 20px;
+}
+.sidebar .sidebar-wrapper > .user ~ .nav {
+  margin-top: 0;
+}
+.sidebar .sidebar-background {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center center;
+}
+.sidebar-nav > li {
+  font-size: 16px;
+  height: 40px;
+}
+
+.sidebar-nav > li i {
+  font-size: 18px;
+}
+
+.sidebar .nav li > a {
+  color: #565656;
+  margin: 5px 15px;
+  border-radius: 4px;
+  padding-left: 0px;
+}
+.sidebar .nav li:hover > a {
+  background: rgba(255, 255, 255, 0.13);
+  opacity: 1;
+  color: #dd0000;
+}
+.sidebar .nav li.active > a {
+  color: #FFFFFF;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.23);
+}
+.sidebar .nav [data-toggle="collapse"] ~ div > ul > li > a {
+  padding-left: 60px;
+}
+.sidebar .nav p {
+  margin: 0;
+  line-height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.sidebar .nav p .caret {
+  float: right;
+  margin-top: 12px;
+}
+.sidebar .nav i {
+  font-size: 20px;
+  float: left;
+  margin-right: 15px;
+  line-height: 30px;
+  width: 30px;
+  text-align: center;
+}
+.windows-os .sidebar .sidebar-wrapper {
+  padding-right: 7px;
+}
+
+.sidebar .logo,
+.bootstrap-navbar .logo {
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(175, 175, 175, 0.2);
+  position: relative;
+  z-index: 4;
+}
+.sidebar .logo p,
+.bootstrap-navbar .logo p {
+  float: left;
+  font-size: 20px;
+  margin: 10px 10px;
+  color: #FFF;
+  line-height: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
+.sidebar .logo .logo-text,
+.bootstrap-navbar .logo .logo-text {
+  text-transform: uppercase;
+  padding: 6px 0px;
+  display: block;
+  font-size: 18px;
+  color: #FFF; /* GES logo text */
+  font-weight: 400;
+  line-height: 30px;
+  text-align: center;
+}
+.sidebar .logo .logo-image,
+.bootstrap-navbar .logo .logo-image {
+  float: left;
+  height: 40px;
+  width: 40px;
+  margin: 0 10px;
+}
+.sidebar .logo .logo-round,
+.bootstrap-navbar .logo .logo-round {
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+}
+.sidebar .logo .logo-round img,
+.bootstrap-navbar .logo .logo-round img {
+  width: 100%;
+}
+.sidebar .user,
+.bootstrap-navbar .user {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px 0;
+}
+.section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 60px;
+}
+.sidebar .user .photo,
+.bootstrap-navbar .user .photo {
+  width: 60px;
+  height: 60px; 
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.sidebar .user .photo img,
+.bootstrap-navbar .user .photo img {
+  width: 100%;
+}
+.sidebar .user a,
+.bootstrap-navbar .user a {
+  text-align: center;
+  color: #FFF;
+  padding: 8px 14px;
+  text-align: center;
+  display: block;
+}
+
+.sidebar:after,
+.bootstrap-navbar:after {
+  background: #787878;
+  background: -moz-linear-gradient(top, #787878 0%, rgba(52, 52, 52, 0.7) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #787878), color-stop(100%, rgba(52, 52, 52, 0.7)));
+  background: -webkit-linear-gradient(top, #787878 0%, rgba(52, 52, 52, 0.7) 100%);
+  background: -o-linear-gradient(top, #787878 0%, rgba(52, 52, 52, 0.7) 100%);
+  background: -ms-linear-gradient(top, #787878 0%, rgba(52, 52, 52, 0.7) 100%);
+  background: linear-gradient(to bottom, #787878 0%, rgba(52, 52, 52, 0.7) 100%);
+  background-size: 150% 150%;
+  z-index: 3;
+  opacity: 1;
+}
+.sidebar[data-image]:after, .sidebar.has-image:after,
+.bootstrap-navbar[data-image]:after,
+.bootstrap-navbar.has-image:after {
+  opacity: .95;
+}
+.sidebar[data-color="red"]:after,
+.bootstrap-navbar[data-color="red"]:after {
+  background: #dd0000;
+  background: -moz-linear-gradient(top, #dd0000 0%, rgba(221, 0, 0, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dd0000), color-stop(100%, rgba(221, 0, 0, 1)));
+  background: -webkit-linear-gradient(top, #dd0000 0%, rgba(221, 0, 0, 1) 100%);
+  background: -o-linear-gradient(top, #dd0000 0%, rgba(221, 0, 0, 1) 100%);
+  background: -ms-linear-gradient(top, #dd0000 0%, rgba(221, 0, 0, 1) 100%);
+  background: linear-gradient(to bottom, #dd0000 0%, rgba(221, 0, 0, 1) 100%);
+  background-size: 150% 150%;
+}

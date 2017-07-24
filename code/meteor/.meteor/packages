@@ -1,0 +1,63 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
+
+standard-minifiers      # JS/CSS minifiers run for production mode
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+
+twbs:bootstrap
+accounts-password
+accounts-facebook
+accounts-twitter
+accounts-google
+pauli:accounts-linkedin
+mizzao:user-status
+kadira:blaze-layout
+kevohagan:sweetalert
+flemay:less-autoprefixer
+service-configuration
+check
+audit-argument-checks
+ejson
+abhiaiyer:meteor-twilio
+kadira:flow-router
+arillo:flow-router-helpers
+browser-policy
+orionjs:core
+aldeed:tabular
+orionjs:bootstrap
+ongoworks:security
+edgee:slingshot
+random
+fortawesome:fontawesome
+vazco:universe-autoform-select
+meteorhacks:kadira
+aldeed:template-extension
+meteorhacks:search-source
+mpowaga:autoform-summernote@=0.4.2
+lukemadera:social-share
+comerc:autoform-typeahead
+comerc:bs-typeahead
+tap:i18n
+endnorth:autoform-slingshot
+mpowaga:autoform-autocomplete
+momentjs:moment
+verron:autosize
+copleykj:tagstripper
+djedi:sanitize-html
+djedi:sanitize-html-client
+email
+gfk:mailgun-api
+raix:push
+dispatch:login-token

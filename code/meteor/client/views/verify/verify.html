@@ -1,0 +1,114 @@
+<template name="verify">
+    {{#if step1}}
+        <div style="margin-top: -60px;">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="card">
+
+                    <div class="content">
+                        <div>
+                            <div class="pull-left"><span class="logo">Talloo</span></div>
+                            <div class="pull-right">
+                                <div class="step-dot step-dot-selected"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+                        <div style="padding-top:50px;"><hr>
+                            <p>Enter your mobile number and we will text your member number<br></p>
+                            <form id="verify-step1-form" style="margin-top:20px;">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1"><i class="icon ion-ios-telephone-outline"></i></span>
+                                        <input id='mobile-number-input' placeholder="(208)-555-1212" class="form-control" aria-describedby="basic-addon1"/>
+                                    </div>
+                                    <div class="form-group" style="text-align:center;margin-top:20px;">
+                                        <a href="#" id="verify-continue1-btn" class="btn-continue">Continue</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="padding-top:250px;">
+                            <p>Did you lose access to your mobile number?</p>
+                            <p>You can recover your account <a href="#" style="color:red;">contact support</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if step2}}
+        <div style="margin-top: -60px;">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="card">
+
+                    <div class="content">
+                        <div>
+                            <div class="pull-left"><span class="logo">Verify</span></div>
+                            <div class="pull-right">
+                                <div class="step-dot"></div>
+                                <div class="step-dot step-dot-selected"></div>
+                                <div class="step-dot"></div>
+                            </div>
+                        </div>
+                        <div style="padding-top:50px;"><hr>
+                            <p>We texted you a member number.<br>Enter it below<br></p>
+                            <form id="verify-step2-form" style="margin-top:20px;">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <input id='member-number-input' placeholder="Member Number" class="form-control"/>
+                                    </div>
+                                    <div class="form-group" style="text-align:center;margin-top:20px;">
+                                        <a href="#" id="verify-continue2-btn" class="btn-continue">Continue</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="padding-top:250px;">
+                            <p>Code not showing up?</p>
+                            <p><a href="" style="color:red">Request another code</a>, or <a href="#" style="color:red;">contact support</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if step3}}
+        <div style="margin-top: -60px;">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="card">
+
+                    <div class="content">
+                        <div>
+                            <div class="pull-left"><span class="logo">Complete</span></div>
+                            <div class="pull-right">
+                                <div class="step-dot"></div>
+                                <div class="step-dot"></div>
+                                <div class="step-dot step-dot-selected"></div>
+                            </div>
+                        </div>
+                        <div style="padding-top:50px;"><hr>
+                            <p>Please accept our terms of service and privacy police to continue<br></p>
+                            <form id="verify-step3-form" style="margin-top:20px;">
+                                <div class="form-group">
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="tos-checkbox">&nbsp;<a href="" style="color:red;">Terms of Service</a>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="pp-checkbox">&nbsp;<a href="" style="color:red;">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                    <div class="form-group" style="text-align:center;margin-top:20px;">
+                                        <a href="#" id="verify-accept-btn" class="btn-continue">Accept</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+</template>

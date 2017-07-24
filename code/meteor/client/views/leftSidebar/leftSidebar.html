@@ -1,0 +1,48 @@
+<template name="leftSidebar">
+    <ul class="sidebar-nav">
+        <li>
+            <a class="side-menu-item" rel="tooltip" title="News" href="/news">
+                <i class="{{dict 'icons.news'}}"></i><span class="left-padding"> News Feed</span>
+            </a>
+        </li>
+        <li>
+            <a class="side-menu-item" rel="tooltip" title="Meet-ups" href="http://www.meetup.com/talloo/events" target="_blank">
+                <i class="{{dict 'icons.calendar'}}"></i><span class="left-padding"> Meet-ups</span>
+            </a>
+        </li>
+        <li>
+            <a class="side-menu-item" rel="tooltip" title="People" href="/connections">
+                <i class="{{dict 'icons.people'}}"></i><span class="left-padding"> Members</span>
+            </a>
+        </li>
+        <!-- 
+        <li class="section">
+            <a class="side-menu-item" rel="tooltip" title="Referrals" href="/referrals">
+                <i class="{{dict 'icons.referrals'}}"></i><span class="left-padding"> Referrals</span>
+            </a>
+        </li> 
+        -->
+        <li class="section">
+            <a class="side-menu-item" rel="tooltip" title="Search" href="/search">
+                <i class="{{dict 'icons.search'}}"></i><span class="left-padding"> Search</span>
+            </a>
+        </li>
+        <li>
+            <a class="side-menu-item" rel="tooltip" title="Profile" href="/profile">
+                <i class="{{dict 'icons.profile'}}"></i><span class="left-padding"> Profile</span>
+            </a>
+        </li>
+        {{#if isAdmin}}
+            <li>
+                <a class="side-menu-item" rel="tooltip" title="Dashboard" href="/users">
+                    <i class="{{dict 'icons.dashboard'}}"></i><span class="left-padding"> Dashboard</span>
+                </a>
+            </li>
+        {{/if}}
+        <li>
+            <a rel="tooltip" title="Logout" id="logout" href="">
+                <i class="{{dict 'icons.logOut'}}"></i><span class="left-padding"> Logout</span>
+            </a>
+        </li>
+    </ul>
+</template>

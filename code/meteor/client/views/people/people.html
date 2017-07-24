@@ -1,0 +1,130 @@
+<template name="people">
+<div class="col-md-10">
+	<div>
+		<span class="h1">
+			People
+		</span>
+	</div>
+</div>
+<div class="col-md-10">
+    <!--
+    <div class="content">
+        <span class="h4 title">Network</span>
+	    <span class="pull-right">
+        	<a id="togglePeopleView" href="#"><span class="btn">Manage Lists</span></a>
+    	</span>
+    </div>
+    -->
+    <div class="top-padding">
+			{{> peopleSearchBox}}
+    	{{#if cardView}}
+    	{{> peopleCards}}
+    	{{else}}
+    	{{> userLists}}
+    	{{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="peopleSearchBox">
+  <!-- <input id="people-search-box" class="form-control workspace-search" placeholder="Search People" autocomplete="off" spellcheck="false" autocorrect="off" tabindex="1"> -->
+
+	<div class="card">
+		<div class="content people-search-box">
+			<div style="margin:0px 20px;">
+				<label for="people-search-input"><i class="ion-ios-search-strong"></i></label>
+				<input id="people-search-input" placeholder="Search for people." autocomplete="off" spellcheck="true" autocorrect="on" autofocus>
+                <button id="people-search-btn" class="btn btn-sm"><i class="ion-ios-search-strong"></i></button>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="peopleCards">
+	<div id="connections">
+		<div class="card">
+			<div class="content">
+				<div class="clearfix"></div>
+				{{#each people}}
+				{{#if self _id}}
+				{{else}}
+				<div class="row" style="padding: 0px 0 10px 0;">
+					<span>
+						<div>
+						<span class="pull-left">
+							<a href="/user/{{_id}}"><img src="{{profile.profileImage}}{{avatarImageOpts}}" class="avatar"></a>
+						</span>
+						<span class="pull-left">
+							<a href="/user/{{_id}}"><strong>{{profile.fullName}}</strong></a><br>
+							{{profile.company}}<br>
+						</span>
+						<span class="pull-right">
+							<div class="btn-group">
+                                {{#if favorite _id}}
+                                    <a id="unfavorite" href="#" user-id="{{_id}}" class="btn-favorite ion-ios-star"></a>
+                                {{else}}
+                                    <a id="favorite" href="#" user-id="{{_id}}" class="btn-favorite ion-ios-star-outline"></a>
+                                {{/if}}
+							</div>
+						</span>
+						</div>
+						<div class="clearfix"></div>
+						<div class="action-panel">
+						{{#if profile.phoneNumber}}
+							<a href="tel:{{profile.phoneNumber}}" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.phone'}}"></i>
+							</a>
+						{{/if}}
+						{{#if emails.[0].address}}
+							<a href="mailto:{{emails.[0].address}}" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.email'}}"></i>
+							</a>
+						{{/if}}
+						{{#if profile.streetAddress}}
+							<a href="https://www.google.com/maps/place/{{profile.city}}+{{profile.state}}+{{profile.zip}}+{{profile.streetAddress}}" target="_new" class="btn btn-sm" style="border: 0; font-size: 1.2em;">
+								<i class="{{dict 'icons.location'}}"></i>
+							</a>
+						{{/if}}
+						</div>
+					</span>
+					<div class="clearfix"></div>
+				</div>
+				{{/if}}
+				{{/each}}
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</template>
+
+
+<template name="userLists">
+  <div class="col-md-8">
+    {{#autoForm collection="Groups" id="newListForm" type="insert" class="form-inline"}}
+    <div>
+      {{> afQuickField name="name" label="List Name" placeholder="List Name" label-class="sr-only"}}
+    </div>
+    <div>
+      {{> afQuickField name="users" label="Users" placeholder="Users" label-class="sr-only"}}
+    </div>
+    <div>
+      <button type="submit" class="btn btn-default">Post</button>
+    </div>
+    {{/autoForm}}
+
+  </div>
+  <div class="col-md-4">
+    <div>
+    <span class="h4">Your Lists</span>
+  </div>
+    <hr>
+    {{#each userLists}}
+      <span class="h4">{{name}}</span>
+      <span class="pull-right"><i class="fa fa-trash delete-list" aria-hidden="true"></i></span>
+      {{#each listMembers users}}
+      <p>{{profile.fullName}}</p>
+      {{/each}}
+    {{/each}}
+  </div>
+</template>

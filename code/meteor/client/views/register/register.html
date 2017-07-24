@@ -1,0 +1,50 @@
+<template name="register">
+<div style="margin-top: -60px;">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="card">
+			<div class="content">
+				<div class="pull-right">
+					<p><i class="ion-ios-locked-outline"></i> Secure</p>
+				</div>
+				<div class="text-center welcome-msg">
+					<img src="/img/moniker-red.png" width="40px">
+					<h1>Talloo</h1>
+					<hr>
+					<h4>Join Free.</h4>
+					<center><button id="facebook-login" class="btn btn-facebook"><i class="ion-ios-unlocked-outline"></i>&nbsp; Sign up with Facebook</button></center>
+					<p style="text-align:center;">-- or --</p><br>
+					<form id="register-user-form">			   
+						<div class="form-group">
+						  	<input id="first" type="text" placeholder="First Name" class="form-control" required>
+						</div>
+						<div class="form-group">
+						  	<input id="last" type="text" placeholder="Last Name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<input id="company" type="text" placeholder="Company" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<input id="email" type="email" placeholder="Email" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<input id="password" type="password" placeholder="Password" class="form-control" required>
+						</div>                                    
+						<div class="form-group">
+							<input id="password-confirm" type="password" placeholder="Password (Confirm)" class="form-control" required>
+						</div>                                    
+					  	<div class="form-actions">
+					  		<p class="text-center small-font-terms" style="margin-bottom: 10px;">By creating the account you are accepting our <a href="https://talloo.zendesk.com/hc/en-us/articles/205888526-Terms-of-Service">Terms of Service</a> and <a href="https://talloo.zendesk.com/hc/en-us/articles/205888306-Privacy-Policy">Privacy Policy</a>.</p>
+							<input type="submit" class="btn btn-fill-white" value="Create Account">
+					  	</div>
+					</form>
+				</div>	
+				<div>
+					<span class="col-md-6 text-center" style="color: #555; border-right: 1px solid #ccc;"><p><a href="/login"> Sign In</a></p></span>
+					<span class="col-md-6 text-center" style="color: #555;"><p><a href="forgot">Reset Password</a></p></span>
+				</div>
+				<div class="clearfix"></div>
+			</div>	
+		</div>
+	</div>
+</div>
+</template>

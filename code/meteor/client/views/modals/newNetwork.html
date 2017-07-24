@@ -1,0 +1,25 @@
+<template name="newNetworkModal">
+	<div class="modal fade" id="new-network-modal">
+    	<div class="modal-dialog">
+      		<div class="modal-content">
+				<div class="modal-body">
+				{{#autoForm collection="Groups" id="newNetworkForm" type="insert" class="form-inline"}}
+					<div class="modal-header">
+						<h4>New Network</h4>
+					</div>
+					<div class="wideLeft">
+						{{> afQuickField name="name" label-class="sr-only" placeholder="Network Name" style="width: 100%;"}}
+					</div>
+					<div class="wideLeft">
+						{{> afQuickField name="users" label-class="sr-only" placeholder="Select Members"}}
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-sm">Create</button>
+					</div>
+					<div class="clearfix"></div>
+					{{/autoForm}}
+				</div>
+      		</div>
+    	</div>
+  	</div>
+</template>

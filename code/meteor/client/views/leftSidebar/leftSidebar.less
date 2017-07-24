@@ -1,0 +1,140 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+
+.red-icon {
+    color: #dd0000;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.256s ease;
+    -moz-transition: all 0.256s ease;
+    -o-transition: all 0.256s ease;
+    transition: all 0.256s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 256px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 256px;
+    width: 0;
+    height: 100%;
+    margin-left: -256px;
+    overflow-y: auto;
+
+    /*background: #000;*/
+    -webkit-transition: all 0.256s ease;
+    -moz-transition: all 0.256s ease;
+    -o-transition: all 0.256s ease;
+    transition: all 0.256s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 256px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    /*padding: 15px;*/
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -256px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 256px;
+    margin: 0;
+    padding: 16px 0px 0px 8px;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 10px;
+    line-height: 20px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #777;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 14px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #ababab;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #dd0000;
+    background: none;
+}
+
+.account-profile
+{
+	position:absolute;
+	bottom:30px;
+	width:100%;
+	background-color: #FFFFFF;
+	Width: 180%;
+	height: 100px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 256px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 64px;
+    }
+
+    #sidebar-wrapper {
+        width: 256px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 64px;
+    }
+
+    #page-content-wrapper {
+        /*padding: 20px;*/
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,67 @@
+<template name="archivedWorkspaces">
+  <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8"> <!-- Workspace Panel -->
+    <div class="card">
+      <div class="content no-top-padding">
+        <div>
+          <table class="table workspaces-header">
+            <tr>
+              <td width="80%">
+                <span class="h4 title" style="line-height:1.5em;">Archived Workspaces</span>
+              </td>
+              <!-- <td width="60%">
+                <section id="searchContainer">
+
+                  <input id="workspace-search-input" class="form-control workspace-search" placeholder="Search Workspaces" autocomplete="off" spellcheck="false" autocorrect="off" tabindex="1">
+
+                </section>
+              </td> -->
+              <td width="20%">
+                <span class="pull-right">
+                  <li class="dropdown" style="list-style-type: none;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <i class="{{dict 'icons.moreMenu'}}" style="font-size: 2em; color:#333;"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <!-- <li><a href="#" id="new-workspace-btn">New Workspace</a></li> -->
+                      <li><a href="#" id="active-workspaces-btn">View Active Workspaces</a></li>
+                    </ul>
+                  </li>
+                </span> 
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tbody>
+              {{#each userWorkspaces}}
+                <tr>
+                  <td class="name-column"><a href="{{pathFor '/workspace/:id' id=_id}}">{{name}}</a></td>
+                  <td class="actions-column">
+                    <!-- {{#if currentUserIsOwner}}
+                      <a href="/news">
+                        <i class="{{dict 'icons.addUser'}}"></i><span class="sr-only"> Add user</span>
+                      </a>
+                      <a href="#" id="{{_id}}" class="archive-workspace-btn">
+                        <i class="{{dict 'icons.archive'}}"></i><span class="sr-only"> Archive</span>
+                      </a>
+                    {{/if}} -->
+                  </td>
+                  <td class="members-column">
+                    {{#each members}}
+                      <a href="/user/{{userId}}">
+                        <img src="https://placehold.it/36x36" class="avatar" style="margin:5px;">
+                      </a>
+                    {{/each}}            
+                  </td>
+                </tr>
+              {{/each}}
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <!-- {{> newWorkspace}} -->
+  </div>
+</template>

@@ -1,0 +1,27 @@
+<template name="newNewsFeedPostModal">
+    <div class="modal fade" id="new-post-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{#autoForm collection="NewsFeedPosts" id="newNFPostModalForm" type="insert" class="form-inline" doc=defaultValues}}
+                    <div class="modal-body">
+                        <div>
+						<span class="pull-left">
+							<h4>New Post</h4>
+						</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <span class="wideLeft">{{> afQuickField name="content" class="new-post-field" label-class="sr-only" rows=15 placeholder="Write here." style="width: 100%;"  autocomplete="off"}}</span>
+                        <div class="clearfix"></div>
+                        <div class="modal-footer">
+                            <span class="pull-right"><button type="submit" class="btn btn-sm" style="margin-top: 5px;">Post</button></span>
+                            <span class="pull-right"
+                                  style="margin-right: 10px;">{{> afQuickField name="imageUrl" label-class="sr-only"}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                {{/autoForm}}
+            </div>
+        </div>
+    </div>
+</template>

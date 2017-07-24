@@ -1,0 +1,26 @@
+<template name="fab">
+  <ul class="mfb-component--br mfb-slidein-spring {{#if showBottomNav}}bottom60px{{/if}}" data-mfb-toggle="hover" id="floatingActionButton">
+    <li class="mfb-component__wrap">
+      <!-- the main menu button -->
+      <a data-mfb-label="More" class="mfb-component__button--main">
+        <!-- the main button icon visibile by default -->
+        <i class="mfb-component__main-icon--resting {{dict 'icons.menuOpen'}}"></i>
+        <!-- the main button icon visibile when the user is hovering/interacting with the menu -->
+        <i class="mfb-component__main-icon--active {{dict 'icons.menuClose'}}"></i>
+      </a>
+      <ul class="mfb-component__list">
+        <!-- a child button, repeat as many times as needed -->
+        <li>
+          <a href="#" id="new-post-btn" data-mfb-label="New Post" class="mfb-component__button--child">
+            <i class="mfb-component__child-icon {{dict 'icons.newPost'}}" style="color:#000000;"></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" id="feedback-btn" data-mfb-label="Send Feedback" class="mfb-component__button--child">
+            <i class="mfb-component__child-icon {{dict 'icons.feedback'}}" style="color:#000000;"></i>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</template>
